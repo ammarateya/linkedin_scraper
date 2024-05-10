@@ -1,11 +1,5 @@
-# Take-Home Assignment: LinkedIn Post Comment Scraper
-
-#Objective:
-#Develop a web scraper that extracts all comments from a specific LinkedIn post along with the profiles of the commenters.
-
-#Background:
+#Develop a web scraper that extracts all comments from a specific LinkedIn post along with the profiles of the commenters 
 #For this assignment, you will build a scraper that collects data from interactions on LinkedIn posts, such as comments and commenter profiles.
-
 #Requirements:
 #- Your program should accept a LinkedIn post URL as user input.
 #- Extract all comments on the post.
@@ -15,7 +9,6 @@
 #- Current Position
 #- Comment Text
 
-#Instructions:
 #1. Setup Environment:
 #- Use Python for this project.
 #- Use libraries like `selenium` for browser automation. Ensure the web driver is configured properly.
@@ -46,4 +39,23 @@
 #- Code quality, organization, and readability.
 #- Robustness in handling edge cases and errors.
 #- Efficiency and speed of the scraping process.
+import sys, time, os
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Path to ChromeDriver
+CHROMEDRIVER_PATH = os.get_env("CHROMEDRIVER")
+
+# Put in your LinkedIn login details
+EMAIL = os.getenv("EMAIL")
+PASSWORD = os.getenv("PASSWORD")
+
+# Accepting LinkedIn post URL from command line
+if len(sys.argv) != 2:
+    print("Usage: python linkedin_scraper.py <linkedin_post_url>")
+    sys.exit(1)
 
