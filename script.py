@@ -84,18 +84,19 @@ def extract_comments(driver, post_url: str) -> List[Tuple[str, str, str, str]]:
             break
 
     # Find the container for all comments
-    comments_container = driver.find_element_by_class_name("comments-comments-list comments-comments-list--expanded")
+    comments_container = driver.find_element_by_class_name("comments-comments-list--expanded")
     
     # Extract comments
-    comment_elements = comments_container.find_elements_by_class_name("comments-comment-item")
-    #for comment_element in comment_elements:
-     #   try:
-      #      name = comment_element.find_element_by_xpath(".//div[@class='comments-comment-item__actor']/a/h3/span[1]/span[1]/span/span[1]").text.strip()
-       #     profile_url = comment_element.find_element_by_xpath(".//div[@class='comments-comment-item__actor']/a").get_attribute("href")
-        #    position = comment_element.find_element_by_xpath(".//div[@class='comments-comment-item__actor']/a/h3/span[2]").text
-         ##  comments.append((name, profile_url, position, text))
-        #except NoSuchElementException as e:
-         #   print(f"Error extracting comment data: {str(e)}")
+    comment_elements = comments_container.find_elements_by_class_name("comments-comments-list__comment-item")
+    for comment_element in comment_elements:
+        try:
+            name = comment_element.find_element_by_class_name("comments-post-meta__name-text")
+            profile_url = comment_element.find_element_by_class_name("app-aware-link").get_attribute("href")
+            position = comment_element.find_element_by_class_name("comments-post-meta__headline")
+            text = comment_element.find_element_by_class_name("update-components-text")
+            comments.append((name, profile_url, position, text))
+        except NoSuchElementException as e:
+            print(f"Error extracting comment data: {str(e)}")
 
     return comments
 
