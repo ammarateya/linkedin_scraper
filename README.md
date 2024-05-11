@@ -46,6 +46,9 @@ Replace `<linkedin_post_url>` with the URL of the LinkedIn post from which you w
 python script.py https://www.linkedin.com/posts/dr-miquel-noguer-i-alonso-7242345_james-harris-simons-1938-may-10-2024-ugcPost-7194739148195278848-sffT/
 ```
 
+## Change it up
+if you want to change it up, and use this for other linkedin stuff, make sure you pay close attention to the tags, because selenium is kinda picky about what you put as parameters. check out the documentation here, it's pretty easy to read: https://www.selenium.dev/documentation/overview/
+
 ## License
 
 This project is not licensed :)
