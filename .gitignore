@@ -1,2 +1,6 @@
 /venv
+/chrome
 .env
+/chromedriver-mac-arm64
+*.html
+.DS_Store
