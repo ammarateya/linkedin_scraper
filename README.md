@@ -28,7 +28,7 @@ PASSWORD=<Your LinkedIn Password>
 
 ### Download ChromeDriver
 
-Download the appropriate version of [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) based on your Chrome browser version. After downloading, extract the `chromedriver` executable and move it to the project directory.
+Download the appropriate version of ChromeDriver based on your Chrome browser version, or download the chrome for testing, and its accompanying webdriver, like I did, because I don't use Chrome, I use Arc. (go arc yay) After downloading, extract the `chromedriver` executable and move it to the project directory.
 
 ## Usage
 
@@ -48,4 +48,4 @@ python script.py https://www.linkedin.com/posts/dr-miquel-noguer-i-alonso-724234
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is not licensed :)
