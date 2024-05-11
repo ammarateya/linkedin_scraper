@@ -72,28 +72,30 @@ def extract_comments(driver, post_url: str) -> List[Tuple[str, str, str, str]]:
 
     # Navigate to the page
     driver.get(post_url)
-    time.sleep(5)  # Let it load
+    time.sleep(3)  # Let it load
 
     # Scroll to load all comments
     while True:
         try:
-            more_comments_button = driver.find_element_by_xpath("//button[contains(@aria-label, 'more comments')]")
+            more_comments_button = driver.find_element_by_class_name("comments-comments-list__load-more-comments-button")
             more_comments_button.click()
             time.sleep(2)
         except NoSuchElementException:
             break
 
+    # Find the container for all comments
+    comments_container = driver.find_element_by_class_name("comments-comments-list comments-comments-list--expanded")
+    
     # Extract comments
-    comment_elements = driver.find_elements_by_xpath("//div[@class='comments-comment-item']")
-    for comment_element in comment_elements:
-        try:
-            name = comment_element.find_element_by_xpath(".//span[@class='comments-comment-item__name']").text
-            profile_url = comment_element.find_element_by_xpath(".//span[@class='comments-comment-item__name']/a").get_attribute("href")
-            position = comment_element.find_element_by_xpath(".//span[@class='comments-comment-item__headline']").text
-            text = comment_element.find_element_by_xpath(".//span[@class='comments-comment-item__main-content']").text
-            comments.append((name, profile_url, position, text))
-        except NoSuchElementException as e:
-            print(f"Error extracting comment data: {str(e)}")
+    comment_elements = comments_container.find_elements_by_class_name("comments-comment-item")
+    #for comment_element in comment_elements:
+     #   try:
+      #      name = comment_element.find_element_by_xpath(".//div[@class='comments-comment-item__actor']/a/h3/span[1]/span[1]/span/span[1]").text.strip()
+       #     profile_url = comment_element.find_element_by_xpath(".//div[@class='comments-comment-item__actor']/a").get_attribute("href")
+        #    position = comment_element.find_element_by_xpath(".//div[@class='comments-comment-item__actor']/a/h3/span[2]").text
+         ##  comments.append((name, profile_url, position, text))
+        #except NoSuchElementException as e:
+         #   print(f"Error extracting comment data: {str(e)}")
 
     return comments
 
