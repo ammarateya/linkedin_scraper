@@ -90,10 +90,11 @@ def extract_comments(driver, post_url: str) -> List[Tuple[str, str, str, str]]:
     comment_elements = comments_container.find_elements_by_class_name("comments-comments-list__comment-item")
     for comment_element in comment_elements:
         try:
-            name = comment_element.find_element_by_class_name("comments-post-meta__name-text")
+            name_element = comment_element.find_element_by_class_name("comments-post-meta__name-text")
+            name = name_element.find_element_by_xpath(".//span[@aria-hidden='true']").text
             profile_url = comment_element.find_element_by_class_name("app-aware-link").get_attribute("href")
-            position = comment_element.find_element_by_class_name("comments-post-meta__headline")
-            text = comment_element.find_element_by_class_name("update-components-text")
+            position = comment_element.find_element_by_class_name("comments-post-meta__headline").text
+            text = comment_element.find_element_by_class_name("update-components-text").text
             comments.append((name, profile_url, position, text))
         except NoSuchElementException as e:
             print(f"Error extracting comment data: {str(e)}")
